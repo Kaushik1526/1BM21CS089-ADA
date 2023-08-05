@@ -67,24 +67,24 @@ void print(int arr[],int n)
 
 void main()
 {
-    int arr[500000],n,i;
+    int arr[100000],n,i;
+    float time_taken;
     clock_t st,et;
-    double ts;
     printf("Enter the size of the array\n");
     scanf("%d",&n);
     for(i=0;i<n;i++)
     {
-        arr[i]=rand();
+         arr[i]=rand()%100;
     }
-    printf("before sorting \n");
-    print(arr,n);
+    //printf("before sorting \n");
+    //print(arr,n);
     st=clock();
     mergesort(arr,0,n-1);
     et=clock();
-    ts=(double)(et-st)/CLOCKS_PER_SEC;
-    printf("\nafter sorting using mergesort\n");
-    print(arr,n);
-    printf("\n Time taken: \t %f",ts);
+    //printf("\nafter sorting using mergesort\n");
+    //print(arr,n);
+    time_taken = ((float)(et-st)/CLOCKS_PER_SEC); // in seconds
 
-
+    printf("\nthe time taken is: %f Clocks per cycle",time_taken);
+ 
 }

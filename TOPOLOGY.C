@@ -1,9 +1,10 @@
 #include<stdio.h>
+#include<conio.h>
 
 void dfs(int);
 int a[10][10],vis[10],exp[10],n,j,m;
 
-int main()
+void main()
 {
    int i,x,y;
    printf("enter the number of vertices\n");
@@ -35,7 +36,7 @@ int main()
     {
        printf("%d",exp[i]);
     }
-    return(0);
+    getch();
 }
 
 void dfs(int v)

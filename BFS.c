@@ -1,46 +1,51 @@
 #include<stdio.h>
-#include<stdlib.h>
+int i,j,n,visited[10],queue[10],front=0,rear=-1;
+int adj[10][10];
 
-int a[20][20], q[20], visited[20], n, i, j, f = 0, r = -1;
-
-void bfs(int v) {
- for(i = 1; i <= n; i++)
- if(a[v][i] && !visited[i])
- q[++r] = i;
- if(f <= r) {
- visited[q[f]] = 1;
- bfs(q[f++]);
- }
+void bfs(int v)
+{
+	for(i=1;i<=n;i++)
+		if(adj[v][i] && !visited[i])
+		 queue[++rear]=i;
+		if(front<=rear)
+		{
+			visited[queue[front]]=1;
+			bfs(queue[front++]);
+		}
 }
 
-void main() {
- int v;
- printf("\n Enter the number of vertices:");
- scanf("%d", &n);
- 
- for(i=1; i <= n; i++) {
- q[i] = 0;
- visited[i] = 0;
- }
- 
- printf("\n Enter graph data in matrix form:\n");
- for(i=1; i<=n; i++) {
- for(j=1;j<=n;j++) {
- scanf("%d", &a[i][j]);
- }
- }
- 
- printf("\n Enter the starting vertex:");
- scanf("%d", &v);
- bfs(v);
- printf("\n The node which are reachable are:\n");
- 
- for(i=1; i <= n; i++) {
- if(visited[i])
- printf("%d\t", i);
- else {
- printf("\n Bfs is not possible. Not all nodes are reachable");
- break;
- }
- }
+void main()
+{
+	int v;
+	printf("Enter the number of vertices\n");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		queue[i]=0;
+		visited[i]=0;
+	}
+	printf("Enter the graph data in adjacent matrix form \n");
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=n;j++)
+		{
+			scanf("%d",&adj[i][j]);
+		}
+	}
+	
+	printf("Enter the starting vertex\n");
+	scanf("%d",&v);
+	bfs(v);
+	printf("Traversal:.....");
+	for(i=1;i<=n;i++)
+	{
+		if(visited[i])
+		   printf("%d\t",i);
+		else
+		{
+		   printf("BFS not possible\n");
+		   break;
+	    }
+	}
+	
 }

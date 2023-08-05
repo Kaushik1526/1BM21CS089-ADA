@@ -1,6 +1,6 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<time.h>
+#include<stdlib.h>
 void swap(int *a,int *b)
 {
     int temp;
@@ -10,6 +10,7 @@ void swap(int *a,int *b)
 }
 int partition(int arr[],int l,int r)
 {
+    //ascending order
     int pivot=arr[r];
     int i=l-1,j;
     for(j=l;j<=r-1;j++)
@@ -23,6 +24,19 @@ int partition(int arr[],int l,int r)
     swap(&arr[i+1],&arr[r]);
     return (i+1);
 
+    //descending order
+    // int pivot=arr[l];
+    // int i=l,j=r+1;
+    // for(i=l;i<r;i++)
+    // {
+    //     if(arr[i]>pivot)
+    //     {
+    //         j--;
+    //         swap(&arr[i],&arr[j]);
+    //     }
+    // }
+    // swap(&arr[j],&arr[l]);
+    // return (j);
 }
 void quicksort(int arr[],int l,int r)
 {
@@ -44,20 +58,24 @@ void print(int arr[],int n)
 }
 void main()
 {
-    int arr[500000],n,i;
+    int arr[200000],n,i;
+    float time_taken;
     clock_t st,et;
-    double ts;
     printf("Enter the size of the array\n");
     scanf("%d",&n);
     for(i=0;i<n;i++)
     {
-        arr[i]=rand();
+       arr[i]=rand()%100;
     }
-    printf("before sorting \n");
-    print(arr,n);
+    //printf("before sorting \n");
+    //print(arr,n);
+    st=clock();
     quicksort(arr,0,n-1);
-    printf("\nafter sorting using quicksort\n");
-    print(arr,n);
+    et=clock();
+    //printf("\nafter sorting using quicksort\n");
+    //print(arr,n);
+    time_taken = ((float)(et-st)/CLOCKS_PER_SEC); // in seconds
 
+    printf("\nthe time taken is: %f Clocks per cycle",time_taken);
 
 }
